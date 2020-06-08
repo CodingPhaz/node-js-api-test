@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chatting apps</h1>
+
+
+    <form action="/newPost" method="post">
+        <label for="Name">Name</label>
+        <input type="text" id="name" name="name">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+        <button type="submit">send</button>
+    </form>
+    <div>
+        <%# if (chatting { %>
+        <!-- <h2><%# chatting[0]['name'] %></h2> -->
+
+        <% for(var i=0; i < chatting.length; i++) {%>
+            
+            <h4>nom : </h4>
+            <%= chatting[i].name%>
+            <h5> message</h5> <%=chatting[i].message%>
+           
+        <% } %>
+    </div>
+</body>
+</html>
