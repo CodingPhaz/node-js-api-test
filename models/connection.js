@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize')
-
 const sequelize = new Sequelize('testdbnode', 'root', 'root', {
     host: 'localhost',
     dialect: 'mariadb'
 })
+// const post = require('../server.js')
 
 
 sequelize.authenticate()
@@ -35,20 +35,17 @@ Chat.init({
 
 
 Chat.findAll().then(chat => {
-    var ok = JSON.stringify(chat,null,4);
-    var result = JSON.parse(ok)
-    for(const x in result){
-        console.log(`Nom : ${result[x].name} 
-        Message : ${result[x].message}`)
+    var getData = JSON.stringify(chat,null,4);
+    var parseResult = JSON.parse(getData)
+    for(const getOne in parseResult){
+        console.log(`Nom : ${parseResult[getOne].name} 
+        Message : ${parseResult[getOne].message}`)
     }
-    // for(var i = 0; i < ok.name;  i++ ){
-        // console.log(ok["id"])
-    // }
-    // console.log('All message in chat : ', JSON.stringify(chat,null, 2))
+
     let chatt = JSON.stringify(chat,null, 4)
-    module.exports.chatted = JSON.parse(chatt)
+    exports.chatted = JSON.parse(chatt)
 })
 
-// Chat.create({ name: 'Sophonie', message: 'Salut tout marche parfaitement'}).then(sam => {
-//     console.log('Your id is ', sam.id)
-// })
+// console.log('nouveaux post ajouter ',post)
+Chat.create(post)
+

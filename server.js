@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const chatted = require('./models/connection')
+const newpost = require('./models/connection')
 const path = require('path')
 var bodyParser = require('body-parser')
 let ejs = require('ejs');
@@ -26,9 +27,13 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/newPost', (req,res)=> {
-    console.dir(req.body);
-    res.send(req.body)
-    console.log(req.body)
+    // console.dir(req.body);
+    res.send(req.body.name)
+    // console.log(req.body)
+    module.exports.post = req.body
+
+    // Chat.create({ name: req.body.name, message: req.body.message}).then(newM=> {
+        // console.log(newpost)
 })
 
 
