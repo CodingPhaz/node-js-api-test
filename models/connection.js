@@ -33,19 +33,29 @@ Chat.init({
 }
 )
 
-
+//Afficher les donnee
+// var chatted;
 Chat.findAll().then(chat => {
     var getData = JSON.stringify(chat,null,4);
-    var parseResult = JSON.parse(getData)
-    for(const getOne in parseResult){
-        console.log(`Nom : ${parseResult[getOne].name} 
-        Message : ${parseResult[getOne].message}`)
-    }
+    // var parseResult = JSON.parse(getData)
+    // for(const getOne in parseResult){
+        // console.log(`Nom : ${parseResult[getOne].name} 
+        // Message : ${parseResult[getOne].message}`)
+    // }
 
-    let chatt = JSON.stringify(chat,null, 4)
-    exports.chatted = JSON.parse(chatt)
+    // let chatt = JSON.stringify(chat,null, 4)
+ module.exports.chatParsed = JSON.parse(getData)
 })
 
+
+let newPost = function newChat(post){
+    return Chat.create(post)
+}
+
+
+//Ajout
 // console.log('nouveaux post ajouter ',post)
-Chat.create(post)
+
+//  chatted
+module.exports.newMessage= newPost
 
