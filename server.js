@@ -33,8 +33,7 @@ app.post('/newPost', (req,res)=> {
     .then(chatBox => {
             console.log(chatBox)
     })
-    // .then(nM => {
-    // })
+
     res.redirect('/post');
     console.log(db.chatParsed)
 })
