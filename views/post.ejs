@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div>
+        <%# if (chatting { %>
+        <!-- <h2><%# chatting[0]['name'] %></h2> -->
+
+        <% for(var i=0; i < chat.length; i++) {%>
+            
+            <h4>nom : </h4>
+            <%= chat[i].name%>
+            <h5> message</h5> <%=chat[i].message%>
+           
+        <% } %>
+    </div>   
+</body>
+</html>
