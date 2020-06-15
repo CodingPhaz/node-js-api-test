@@ -18,8 +18,10 @@ app.get('/',(req,res)=>{
 app.post('/newPost', (req,res)=> {
     console.log(req.body)
     db.newMessage({name: req.body.name, message: req.body.message})
-    .then(nM => {
-            console.log('message added', nM.name)
+    .then(chatBox => {
+            chatBox.reload().then(chatReload=> {
+                console.log(chatReload)
+            })
     })
     // .then(nM => {
     // })
@@ -28,5 +30,8 @@ app.post('/newPost', (req,res)=> {
 })
 
 
-var server = app.listen(3003 ,  console.log('Port listen in 3000'))
+
+
+
+var server = app.listen(3000 ,  console.log('Port listen in 3000'))
 

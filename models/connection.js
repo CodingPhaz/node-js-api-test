@@ -26,7 +26,6 @@ sequelize.authenticate()
 
 
 
-
     Chat.init({
         name: {
             type: Sequelize.STRING,
@@ -41,13 +40,13 @@ sequelize.authenticate()
     }
     )
 
+
     //Afficher les donnee
-    Chat.findAll()
+ const h =    Chat.findAll()
         .then(chat => {
             var getData = JSON.stringify(chat,null,4);
                 module.exports.chatParsed = JSON.parse(getData)
        })
-
 
 
 let newPost = function newChat(post){
