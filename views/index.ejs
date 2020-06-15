@@ -16,17 +16,6 @@
         <textarea name="message" id="message" cols="30" rows="10"></textarea>
         <button type="submit">send</button>
     </form>
-    <div>
-        <%# if (chatting { %>
-        <!-- <h2><%# chatting[0]['name'] %></h2> -->
-
-        <% for(var i=0; i < chatting.length; i++) {%>
-            
-            <h4>nom : </h4>
-            <%= chatting[i].name%>
-            <h5> message</h5> <%=chatting[i].message%>
-           
-        <% } %>
-    </div>
+    
 </body>
 </html>

@@ -1,15 +1,5 @@
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize('testdbnode', 'root', 'root', {
-    host: 'localhost',
-    dialect: 'mariadb',
-    pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-})
-
+const sequelize = require('../database/db.js')
 
 sequelize.authenticate()
     .then(() => {
@@ -20,13 +10,7 @@ sequelize.authenticate()
     })
 
 
-
-    const Model = Sequelize.Model;
-    class Chat extends Model{}
-
-
-
-    Chat.init({
+    const Chat = sequelize.define('chat',{
         name: {
             type: Sequelize.STRING,
             allowNull: false
@@ -34,24 +18,27 @@ sequelize.authenticate()
         message: {
             type: Sequelize.STRING
         }
-    }, {
-        sequelize,
-        modelName: 'chat'
-    }
-    )
+    });
+
+    // Chat.init({
+    // }, {
+    //     sequelize,
+    //     modelName: 'chat'
+    // }
+    // )
 
 
     //Afficher les donnee
- const h =    Chat.findAll()
-        .then(chat => {
-            var getData = JSON.stringify(chat,null,4);
-                module.exports.chatParsed = JSON.parse(getData)
-       })
+  const chatList = Chat.findAll()
 
 
 let newPost = function newChat(post){
     return Chat.create(post)
 }
 
-module.exports.newMessage= newPost
+module.exports= { 
+    newPost, 
+    sequelize, 
+    chatList }
+
 
