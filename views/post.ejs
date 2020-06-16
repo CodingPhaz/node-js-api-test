@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     <title>Document</title>
 </head>
 <body>
-     <div>
-        <%# if (chatting { %>
-        <!-- <h2><%# chatting[0]['name'] %></h2> -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/add">Send Message</a></li>
+                <li class="breadcrumb-item"><a href="/post">All Message</a></li>
+            </ol>
+        </nav>
+
+
 
         <% for(var i=0; i < chat.length; i++) {%>
-            
-            <h4>nom : </h4>
-            <%= chat[i].name%>
-            <h5> message</h5> <%=chat[i].message%>
+         <div class="card">
+          <div class="card-body">
+              <form action="/delete/<%= chat[i].id%>" method="get">
+                <h4>nom : <%= chat[i].name%></h4>
+                <h4>id : <%= chat[i].id%></h4>
+                
+                <h5> message: </h5> <%=chat[i].message%>
+                <br>
+                <input type="" value=<%= chat[i].id%>>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+           </div>  
+        </div>   
            
         <% } %>
-    </div>   
 </body>
 </html>
