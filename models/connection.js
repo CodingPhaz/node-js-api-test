@@ -48,7 +48,7 @@ sequelize.authenticate()
         })
     })
 
-
+    //Supprimer un message
     router.get('/delete/:id', (req,res) => {
         Chat.destroy({
             where: {
@@ -61,6 +61,11 @@ sequelize.authenticate()
 
         // res.send(req.params.id)
     })
+
+    router.get('/update/:id', (req,res) => {
+        res.send(req.body);
+    })
+
 
     //le formulaire d'ajout de nouveaux messsage
     router.get('/add', (req,res)=>{
