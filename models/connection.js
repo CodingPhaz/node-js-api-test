@@ -18,7 +18,7 @@ sequelize.authenticate()
         console.log('Unable to connect to database : ', err)
     })
 
-
+    //Initialiser le model a la base de donnee
     const Chat = sequelize.define('chat',{
         name: {
             type: Sequelize.STRING,
@@ -29,7 +29,7 @@ sequelize.authenticate()
         }
     });
     
-
+    //afficher la page d'acceuil
     router.get('/',(req,res) => {
         res.send('home pagee')
     })
@@ -42,22 +42,40 @@ sequelize.authenticate()
         Chat.findAll().then(chat=> {
             // var getChat = JSON.stringify(chat, null, 4)
             // var chatParsing = JSON.parse(getChat)
-            console.log(chat)
+            // console.log(chat)
             res.render('post.ejs', {chat})
         
         })
     })
 
+
+    router.get('/delete/:id', (req,res) => {
+        Chat.destroy({
+            where: {
+                id: req.params.id
+            },
+        }).then((del)=> {
+            res.redirect('/post')
+            console.log('Done', del)
+        })
+
+        // res.send(req.params.id)
+    })
+
+    //le formulaire d'ajout de nouveaux messsage
     router.get('/add', (req,res)=>{
         res.render('index.ejs')
     })
+
+
     // Cree de nouveaux message
     router.post('/newPost', (req, res) => {
         Chat.create({name: req.body.name, message: req.body.message})
-        .then(chatBox => {
-                console.log(chatBox)
-        })
+        // .then(chatBox => {
+        //         // console.log(chatBox)
+        // })
 
+        //rediriger apres l'ajout d'un nouveau message
         res.redirect('/post');
         // console.log(db.chatParsed)
 
