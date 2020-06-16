@@ -42,7 +42,7 @@ sequelize.authenticate()
         Chat.findAll().then(chat=> {
             // var getChat = JSON.stringify(chat, null, 4)
             // var chatParsing = JSON.parse(getChat)
-            console.log(chat)
+            // console.log(chat)
             res.render('post.ejs', {chat})
         
         })
@@ -50,7 +50,16 @@ sequelize.authenticate()
 
 
     router.get('/delete/:id', (req,res) => {
-        res.send(req.params)
+        Chat.destroy({
+            where: {
+                id: req.params.id
+            },
+        }).then((del)=> {
+            res.redirect('/post')
+            console.log('Done', del)
+        })
+
+        // res.send(req.params.id)
     })
 
     //le formulaire d'ajout de nouveaux messsage
@@ -62,9 +71,9 @@ sequelize.authenticate()
     // Cree de nouveaux message
     router.post('/newPost', (req, res) => {
         Chat.create({name: req.body.name, message: req.body.message})
-        .then(chatBox => {
-                console.log(chatBox)
-        })
+        // .then(chatBox => {
+        //         // console.log(chatBox)
+        // })
 
         //rediriger apres l'ajout d'un nouveau message
         res.redirect('/post');
