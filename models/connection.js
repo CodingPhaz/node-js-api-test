@@ -62,6 +62,8 @@ sequelize.authenticate()
         // res.send(req.params.id)
     })
 
+
+    //mettre a jour un message
     router.get('/update/:id', (req,res) => {
         res.send(req.body);
     })

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,30 +18,21 @@
         </nav>
 
 
-
-        <% for(var i=0; i < chat.length; i++) {%>
          <div class="card">
           <div class="card-body">
-              <h4>nom : <%= chat[i].name%></h4>
-              <h4>id : <%= chat[i].id%></h4>
-              
-              <h5> message: </h5> <%=chat[i].message%>
-              <br>
               <form action="/update/<%= chat[i].id%>" method="get">
-                  <input type="hidden" value=<%= chat[i].name%>>
-                  <input type="hidden" value=<%= chat[i].message%>>
-                  <!-- <input type="hidden" value=<#%= chat[i].id%>> -->
-                  <button type="submit" class="btn btn-primary">Update</button>
-              </form>
-              
-              <form action="/delete/<%= chat[i].id%>" method="get">
-              <!-- get id of message for destroy -->
-              <input type="hidden" value=<%= chat[i].id%>>
+                <h4>nom : <%= chat[i].name%></h4>
+                <h4>id : <%= chat[i].id%></h4>
+                
+                <h5> message: </h5> <%=chat[i].message%>
+                <br>
+                
+                <!-- get id of message for destroy -->
+                <input type="hidden" value=<%= chat[i].id%>>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-            </div>  
+           </div>  
         </div>   
            
-        <% } %>
 </body>
 </html>
