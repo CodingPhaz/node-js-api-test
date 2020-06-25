@@ -34,6 +34,7 @@ sequelize.authenticate()
         res.send('home pagee')
     })
 
+    
 
     //Afficher les donnee
     
@@ -84,13 +85,33 @@ sequelize.authenticate()
 
     //Show one message
     router.get('/show/:id', (req, res) => {
-        Chat.findOne(req.body.id).then((find) => {
+        // console.log(par)
+        Chat.findByPk(req.params.id).then((find) => {
+            // var finder = JSON.stringify(find, null , 4)
+            // console.log(find)
             res.render('message.ejs', {find})
-            console.log(JSON.stringify(find, null , 4))
         })
     })
 
-    //update 
+    //Update message
+
+    router.post('/update/:id', (req,res) => {
+        var postId = req.params
+        var edited = req.body
+        // var edjs = JSON.stringify(edited, null , 4)
+        console.log(edited.name)
+        console.log(edited.message)
+        // console.log(edjs)
+        Chat.update({name: edited.name, message: edited.message}, {
+            where : {
+              id: postId.id
+            }
+        }).then(() => {
+            console.log('updated')
+        })
+
+        res.redirect('/post')
+    } )
 
 
 

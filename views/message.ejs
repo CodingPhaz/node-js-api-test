@@ -14,14 +14,18 @@
 
 <form action="/update/<%= find.id%>" method="post">
 
-
+    <!-- <input type="hidden" name="id" value='<%= find.id%>'> -->
+    <!-- <input type="hidden" name="name" value='<%= find.name%>'> -->
     <h4>Nom</h4>
-    <input type="text" value=<%= find.name%>
+        <div class="form-groups">
+            <input type="text" name="name" value='<%= find.name%>' > 
+        </div>
     <br>
     <h4>Message</h4>
-    <input type="text" value=<%= find.message%> >
+        <textarea name="message" cols="30" rows="10" value='<%= find.message%>'></textarea>
+    <!-- <input type="text" name="message" value='<%= find.message%>' > -->
 
-    <button class="btn btn-primary"> Update</button>
+    <button class="btn btn-primary" type="submit"> Update</button>
     </form>
     </div>
 </body>

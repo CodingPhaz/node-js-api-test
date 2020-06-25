@@ -30,8 +30,10 @@
                 <input type="hidden" value=<%= chat[i].id%>>
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-            <form action="/show/<%= chat[i].id%>" method="GET">
+            <form action="/show/<%= chat[i].id%>" method="get">
                 <input type="hidden" value=<%= chat[i].id%>>
+                <input type="hidden" value=<%= chat[i].name%>>
+                <input type="hidden" value=<%= chat[i].message%>>
                 <button type="submit" class="btn btn-danger">Update</button>
             </form>
            </div>  
