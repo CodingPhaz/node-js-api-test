@@ -82,5 +82,17 @@ sequelize.authenticate()
     })
 
 
+    //Show one message
+    router.get('/show/:id', (req, res) => {
+        Chat.findOne(req.body.id).then((find) => {
+            res.render('message.ejs', {find})
+            console.log(JSON.stringify(find, null , 4))
+        })
+    })
+
+
+
+
+
 module.exports = router;
 
