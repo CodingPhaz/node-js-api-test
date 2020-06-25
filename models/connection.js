@@ -5,6 +5,8 @@ const Sequelize = require('sequelize')
 const sequelize = require('../database/db.js')
 var bodyParser = require('body-parser')
 
+
+//middlewers
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json())
 app.set('view engine', 'ejs')
@@ -18,7 +20,7 @@ sequelize.authenticate()
         console.log('Unable to connect to database : ', err)
     })
 
-    //Initialiser le model a la base de donnee
+    //IInit Mode to databse
     const Chat = sequelize.define('chat',{
         name: {
             type: Sequelize.STRING,
@@ -59,61 +61,45 @@ sequelize.authenticate()
             res.redirect('/post')
             console.log('Done', del)
         })
-
-        // res.send(req.params.id)
     })
 
-    //le formulaire d'ajout de nouveaux messsage
+    //get form for add new message
     router.get('/add', (req,res)=>{
         res.render('index.ejs')
     })
 
 
-    // Cree de nouveaux message
+    // create new message
     router.post('/newPost', (req, res) => {
         Chat.create({name: req.body.name, message: req.body.message})
-        // .then(chatBox => {
-        //         // console.log(chatBox)
-        // })
-
-        //rediriger apres l'ajout d'un nouveau message
         res.redirect('/post');
-        // console.log(db.chatParsed)
 
     })
-
-
-    //Show one message
-    router.get('/show/:id', (req, res) => {
-        // console.log(par)
-        Chat.findByPk(req.params.id).then((find) => {
-            // var finder = JSON.stringify(find, null , 4)
-            // console.log(find)
-            res.render('message.ejs', {find})
-        })
-    })
-
+    
+    
     //Update message
-
     router.post('/update/:id', (req,res) => {
-        var postId = req.params
+        var postId = req.params.id
         var edited = req.body
-        // var edjs = JSON.stringify(edited, null , 4)
-        console.log(edited.name)
-        console.log(edited.message)
-        // console.log(edjs)
         Chat.update({name: edited.name, message: edited.message}, {
             where : {
-              id: postId.id
+              id: postId
             }
         }).then(() => {
             console.log('updated')
         })
-
+        
         res.redirect('/post')
     } )
+    
 
-
+    //Show one message
+    router.get('/show/:id', (req, res) => {
+        Chat.findByPk(req.params.id).then((find) => {
+            res.render('message.ejs', {find})
+        })
+    })
+    
 
 module.exports = router;
 
