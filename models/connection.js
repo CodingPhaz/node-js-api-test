@@ -31,7 +31,7 @@ sequelize.authenticate()
         }
     });
     
-    //afficher la page d'acceuil
+    //Home page
     router.get('/',(req,res) => {
         res.send('home pagee')
     })
@@ -46,7 +46,7 @@ sequelize.authenticate()
             // var getChat = JSON.stringify(chat, null, 4)
             // var chatParsing = JSON.parse(getChat)
             // console.log(chat)
-            res.render('post.ejs', {chat})
+            res.render('allPosts.ejs', {chat})
         
         })
     })
@@ -65,7 +65,7 @@ sequelize.authenticate()
 
     //get form for add new message
     router.get('/add', (req,res)=>{
-        res.render('index.ejs')
+        res.render('addPost.ejs')
     })
 
 
@@ -96,7 +96,7 @@ sequelize.authenticate()
     //Show one message
     router.get('/show/:id', (req, res) => {
         Chat.findByPk(req.params.id).then((find) => {
-            res.render('message.ejs', {find})
+            res.render('post.ejs', {find})
         })
     })
     

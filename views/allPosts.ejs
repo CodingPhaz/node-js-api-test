@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/add">Send Message</a></li>
+                <li class="breadcrumb-item"><a href="/post">All Message</a></li>
+            </ol>
+        </nav>
+
+
+
+        <% for(var i=0; i < chat.length; i++) {%>
+         <div class="card">
+          <div class="card-body">
+              <form action="/delete/<%= chat[i].id%>" method="get">
+                <p><em>Name: </em><strong><%= chat[i].name%></strong></p>
+                
+                <em> message: </em>
+                <p><%=chat[i].message%></p>
+                <br>
+                <input type="hidden" value=<%= chat[i].id%>>
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            <br>
+            <form action="/show/<%= chat[i].id%>" method="get">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+           </div>  
+        </div>   
+           
+        <% } %>
+</body>
+</html>

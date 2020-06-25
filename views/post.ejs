@@ -3,42 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS only -->
+    <title>Document</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>Document</title>
 </head>
 <body>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/add">Send Message</a></li>
-                <li class="breadcrumb-item"><a href="/post">All Message</a></li>
-            </ol>
-        </nav>
+    <div class="container">
+        <h1>Mon message</h1>
 
 
+<form action="/update/<%= find.id%>" method="post">
 
-        <% for(var i=0; i < chat.length; i++) {%>
-         <div class="card">
-          <div class="card-body">
-              <form action="/delete/<%= chat[i].id%>" method="get">
-                <h4>nom : <%= chat[i].name%></h4>
-                <h4>id : <%= chat[i].id%></h4>
-                
-                <h5> message: </h5> <%=chat[i].message%>
-                <br>
-                <input type="hidden" value=<%= chat[i].id%>>
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-            <form action="/show/<%= chat[i].id%>" method="get">
-                <input type="hidden" value=<%= chat[i].id%>>
-                <input type="hidden" value=<%= chat[i].name%>>
-                <input type="hidden" value=<%= chat[i].message%>>
-                <button type="submit" class="btn btn-danger">Update</button>
-            </form>
-           </div>  
-        </div>   
-           
-        <% } %>
+    <h4>Nom</h4>
+        <div class="form-groups">
+            <input class="form-control" type="text" name="name" value='<%= find.name%>' > 
+        </div>
+    <br>
+    <h4>Message</h4>
+    <div class="form-groups">
+        <textarea class="form-control" name="message" cols="30" rows="10" value='<%= find.message%>'></textarea>
+    </div>
+        <br>
+    <button class="btn btn-primary" type="submit"> Update</button>
+    </form>
+    </div>
 </body>
 </html>
