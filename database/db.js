@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-module.exports =  new Sequelize('testdbnode', 'root', 'root', {
+module.exports =  new Sequelize('nodedbtest', 'root', 'root', {
     host: 'localhost',
     dialect: 'mariadb',
     dialectOptions:{
